@@ -19,40 +19,24 @@ class Calculator {
   }
 
   chooseOperation(operation) {
-    if (this.previousOperand && this.operation) {
-      if (!this.currentOperand) {
-        this.operation = operation;
-        this.render();
-        return;
-      }
-      this.previousOperand = this.compute();
-      this.operation = operation;
-      this.currentOperand = "";
-      this.render();
-      return;
-    }
     this.operation = operation;
-    this.previousOperand = this.currentOperand;
+    if (this.previousOperand) {
+      if (this.currentOperand) this.previousOperand = this.compute();
+    } else this.previousOperand = this.currentOperand;
     this.currentOperand = "";
     this.render();
   }
 
   compute() {
-    if (!this.previousOperand) return;
+    if (!this.previousOperand || !this.currentOperand) return;
 
     let result = 0;
-    if (this.operation === "+")
-      result =
-        parseFloat(this.previousOperand) + parseFloat(this.currentOperand);
-    else if (this.operation === "-")
-      result =
-        parseFloat(this.previousOperand) - parseFloat(this.currentOperand);
-    else if (this.operation === "*")
-      result =
-        parseFloat(this.previousOperand) * parseFloat(this.currentOperand);
-    else
-      result =
-        parseFloat(this.previousOperand) / parseFloat(this.currentOperand);
+    let prev = parseFloat(this.previousOperand);
+    let curr = parseFloat(this.currentOperand);
+    if (this.operation === "+") result = prev + curr;
+    else if (this.operation === "-") result = prev - curr;
+    else if (this.operation === "*") result = prev * curr;
+    else result = prev / curr;
     this.currentOperand = String(result);
     this.previousOperand = "";
     this.operation = "";
