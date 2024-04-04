@@ -24,6 +24,7 @@ class Calculator {
       if (this.currentOperand) this.previousOperand = this.compute();
     } else this.previousOperand = this.currentOperand;
     this.currentOperand = "";
+    this.operation = operation;
     this.render();
   }
 
