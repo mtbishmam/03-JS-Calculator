@@ -1,0 +1,64 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: Roboto, sans-serif;
+    font-weight: normal;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #00AAFF, #00FF6C);
+}
+
+.calculator-grid {
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    min-height: 100vh; /* To make the centering*/
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+    /* minmax() to make the rows be as long as it needs to fit in all the input */
+}
+
+.calculator-grid > button {
+    cursor: pointer;
+    font-size: 2rem;
+    border: 1px solid white;
+    outline: none;
+    background-color: rgba(255, 255, 255, .75);
+}
+
+.calculator-grid > button:hover {
+    cursor: pointer;
+    font-size: 2rem;
+    border: 1px solid white;
+    outline: none;
+    background-color: rgba(255, 255, 255, .9);
+}
+
+.previous-operand {
+    color: rgba(255, 255, 255, .75);
+    font-size: 1.5rem;
+}
+
+.current-operand {
+    color: rgba(255, 255, 255, 1);
+    font-size: 2.5rem;
+}
+
+.output {
+    background-color: rgba(0, 0, 0, .75);
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 10px;
+
+    word-wrap: break-word; /* idk, yet... */
+    word-break: break-all; /* To make words break not when they're finished or spaces, but when necessary */
+}
+
+.span-two {
+    grid-column: span 2;
+}
